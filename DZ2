@@ -1,0 +1,156 @@
+package DZ2;
+
+/**
+ * Напишите программу, чтобы найти вхождение в строке
+ * (содержащей все символы другой строки).
+ */
+public class Task1 {
+    public static void main(String[] args) {
+        String str1 = "fhgj tuyh skgl";
+        String str2 = "mh";
+        if (str1.contains(str2)){
+            System.out.println("Входит");
+        }
+        else System.out.println("Не входит");
+        if (str1.contains("uy")){
+            System.out.println("Входит");
+        }
+        else System.out.println("Не входит");
+    }
+}
+
+package DZ2;
+
+import java.util.Scanner;
+
+/**
+ * Напишите программу, чтобы проверить,
+ * являются ли две данные строки вращением друг друга
+ * (вхождение в обратном порядке).
+ 
+public class Task2 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите 1 строку ");
+        String str1 = scanner.nextLine();
+        System.out.println("Введите 2 строку ");
+        String str2 = scanner.nextLine();
+        isRotor(str2);
+
+    }
+        static void isRotor(String s){
+        String s1 = s;
+        String s2 = new StringBuilder(s).reverse().toString();
+     //   if ()
+        System.out.println(s2);
+        System.out.println((s1.equals(s2)));
+
+    }
+
+}
+
+
+package DZ2;
+
+import java.util.Scanner;
+
+/**
+ * Напишите программу,
+ * чтобы перевернуть строку с помощью рекурсии.
+ */
+public class Task3 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Введите строку ");
+        String s = sc.nextLine();
+        isPerevernut(s);
+    }
+
+    static void isPerevernut (String s){
+        String str1 = s;
+        String str2 = new StringBuilder(s).reverse().toString();
+        System.out.println("Перевернули: " + str2);
+    }
+}
+
+
+package DZ2;
+
+/**
+ * Дано два числа, например 3 и 56,
+ * необходимо составить следующие строки:
+ * 3 + 56 = 59 3 – 56 = -53 3 * 56 = 168
+ * Используем метод StringBuilder.append().
+ *
+ * Замените символ “=” на слово “равно”.
+ * Используйте методы StringBuilder.replace().
+ *
+ * Замените символ “=” на слово “равно”.
+ * Используйте методы StringBuilder.insert(),
+ * StringBuilder.deleteCharAt()
+ */
+public class Task4 {
+    public static void main(String[] args) {
+        StringBuilder sb = new StringBuilder();
+        int a = 3;
+        int b = 56;
+
+        sb.append(String.format("%d + %d = %d\n", a, b, a + b));
+        sb.append(String.format("%d - %d = %d\n", a, b, a - b));
+        sb.append(String.format("%d * %d = %d\n", a, b, a * b));
+        System.out.println(sb.toString());
+        System.out.println(sb.toString().replaceAll("=", "равно"));
+        System.out.println(swap(String.valueOf(sb)));
+    }
+
+    public static String swap (String sb) {
+        StringBuilder s = new StringBuilder(sb);
+        int index = sb.indexOf("=");
+        return s.deleteCharAt(index).insert(index, "равно").toString();
+    }
+
+}
+
+
+package DZ2;
+
+/**
+ * **Сравнить время выполнения пунка 6 со строкой содержащей 10000 символов "=" средствами String и StringBuilder.
+ */
+public class Task7 {
+    static String str() {
+        String result = String.valueOf('=').repeat(10000);
+        return result;
+    }
+    static void swap(String str){
+        StringBuilder sb = new StringBuilder();
+        sb.append(str);
+        for (int i = 0; i < sb.length(); i++) {
+            int ind = sb.indexOf("=");
+            if (ind >= 0){
+                sb.replace(ind, ind+1, "равно");
+            }
+        }
+        System.out.println(sb);
+    }
+    static void swapString(String str){
+        str = str.replaceAll("=","равно");
+        System.out.println(str);
+    }
+
+    public static void main(String[] args) {
+        long st = System.currentTimeMillis();
+        String s = str();
+        System.out.println(s);
+        swap(s);
+        long end = System.currentTimeMillis();
+        System.out.println(end - st+ "Выполнял StringBuilder");
+
+        long st2 = System.currentTimeMillis();
+        String s2 = str();
+        System.out.println(s2);
+        swapString(s2);
+        long end2 = System.currentTimeMillis();
+        System.out.println(end2-st2 + "Выполнял String");
+    }
+}
