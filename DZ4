@@ -1,0 +1,50 @@
+package DZ4;
+
+import java.util.ArrayList;
+import java.util.Collections;
+
+/**
+ * Написать приложение для ввода ФИО, возраста и пола пользователей. Данные хранить в разных списках.
+ * Добавить методы для сортировки пользователей по возрасту полу и первой букве фамилии.
+ * *Добавить возможность одновременной сортировки по двум параметрам.
+ * **Добавить возможность одновременной сортировки по трём параметрам.
+ */
+public class Task1 {
+    static ArrayList fill(ArrayList<String>fio){//создаём список
+        fio.add("Старцев Сергей Анатольевич 38 М");
+        fio.add("Кононов Андрей Валерьевич 38 М");
+        fio.add("Каюмова Анна Рифовна 20 Ж");
+        fio.add("Ахмадуллина Диляра Шамильевна 35 Ж");
+        return fio;
+    }
+
+    static void printList(ArrayList<String>fio){
+        for (int i = 0; i < fio.size(); i++) {
+            System.out.println(fio.get(i));
+
+        }
+    }
+
+    static void genderSort(ArrayList<String>fio){
+        ArrayList<String>male = new ArrayList<>();
+        ArrayList<String>female = new ArrayList<>();
+        for (int i = 0; i < fio.size(); i++) {
+            if (fio.get(i).split(" ")[4].equalsIgnoreCase("М")){//сортировка по полу
+                male.add(fio.get(i));
+            }
+            else female.add(fio.get(i));
+        }
+        Collections.sort(male);
+        Collections.sort(female);
+        fio.clear();
+        fio.addAll(male);
+        fio.addAll(female);
+        printList(fio);
+    }
+    public static void main(String[] args) {
+        ArrayList<String>people = new ArrayList<>();
+        people = fill(people);
+        //printList(people);
+        genderSort(people);//сортировка по алфавиту
+    }
+}
