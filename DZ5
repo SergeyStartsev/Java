@@ -45,8 +45,5 @@ public class Map {
         LinkedList<Integer> ar2 = ar1;
         Collections.sort(ar2);
         System.out.println(ar2);
-
-
-
     }
 }
